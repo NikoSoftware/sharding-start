@@ -1,0 +1,27 @@
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:sharding.yaml
+
+mybatis-plus:
+  configuration:
+    cache-enabled: false
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: AUTO #主键类型  0:"数据库ID自增", 1:"不操作", 2:"用户输入ID",3:"数字型snowflake", 4:"全局唯一ID UUID", 5:"字符串型snowflake";
+      table-prefix: c_
+      insert-strategy: not_null
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-underline: true
+      update-strategy: not_null
+  type-aliases-package: www.xiaomotou.dynamicstart.domain
+  mapper-locations: classpath:/mapper/*.xml
